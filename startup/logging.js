@@ -31,7 +31,7 @@ module.exports = function() {
   });
 
   winston.add(new winston.transports.File({ filename: 'log_vidly.log' }));
-  // winston.add(new winston.transports.Console());
+  winston.add(new winston.transports.Console());
   winston.add(
     new winston.transports.MongoDB({
       db      : 'mongodb://localhost:/vidlydb',
