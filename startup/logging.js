@@ -1,4 +1,4 @@
-require('express-async-errors');
+require('express-async-errors'); // instead of the async middleware.
 const winston = require('winston');
 require('winston-mongodb');
 

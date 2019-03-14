@@ -22,10 +22,6 @@ describe('auth middleware', () => {
     token = new User().generateAuthToken();
   });
 
-  afterEach(() => {
-    server.close();
-  });
-
   it('should return 401 if no token is provided', async () => {
     token = '';
     try {

@@ -40,15 +40,6 @@ router.post('/', auth, async (req, res) => {
     }
   });
 
-  // try {
-  //   await rental.save();
-  //   movie.numberInStock--;
-  //   await movie.save();
-  //   res.status(200).send({ rentalRes: rental, movieRes: movie });
-  // } catch (error) {
-  //   res.status(500).send('Transaction Failed');
-  // }
-
   try {
     await new Fawn.Task()
       .save('rentals', rental)
