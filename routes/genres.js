@@ -21,7 +21,7 @@ router.post('/', auth, async (req, res) => {
   res.send(genre);
 });
 
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', [ validateObjectId, auth ], async (req, res) => {
   const { error } = validate(req.body);
 
   if (error) return res.status(400).send(error.details[0].message);
@@ -41,7 +41,7 @@ router.put('/:id', auth, async (req, res) => {
   res.send(genre);
 });
 
-router.delete('/:id', [ auth, admin ], async (req, res) => {
+router.delete('/:id', [ validateObjectId, auth, admin ], async (req, res) => {
   let genre = await Genre.findByIdAndDelete(req.params.id);
 
   if (!genre) return res.status(404).send(`The genre with the given ID: ${req.params.id} was not found!`);
