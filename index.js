@@ -11,6 +11,8 @@ require('./startup/validation')();
  * Open connection and port Config.
  */
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   winston.info(`Express listening on port ${port}`);
 });
+
+module.exports = server;

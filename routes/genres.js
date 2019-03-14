@@ -1,3 +1,4 @@
+const validateObjectId = require('../middleware/validateObjectId');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const { Genre, validate } = require('../models/genre');
@@ -32,7 +33,7 @@ router.put('/:id', auth, async (req, res) => {
         genre : req.body.genre
       }
     },
-    { new: true } // with this returns the updated doc, without is rettruen the original doc before udate operation
+    { new: true } // with this returns the updated doc, without it returns the original doc before update operation
   );
 
   if (!genre) return res.status(404).send(`The genre with the given ID: ${req.params.id} was not found!`);
@@ -48,8 +49,8 @@ router.delete('/:id', [ auth, admin ], async (req, res) => {
   res.send(genre);
 });
 
-router.get('/:id', async (req, res) => {
-  let genre = await Genre.findById(req.params.id).sort({ genre: 1 });
+router.get('/:id', validateObjectId, async (req, res) => {
+  const genre = await Genre.findById(req.params.id).sort({ genre: 1 });
 
   if (!genre) return res.status(404).send(`The genre with the given ID: ${req.params.id} was not found!`);
 
