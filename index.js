@@ -6,7 +6,9 @@ require('./startup/logging')();
 require('./startup/routes')(app);
 require('./startup/db')();
 require('./startup/config')();
-require('./startup/validation')();
+require('./startup/validation')(); //TODO: Why did we do this...?
+require('./startup/prod')(app);
+
 /** 
  * Open connection and port Config.
  */
