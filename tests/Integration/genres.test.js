@@ -91,7 +91,7 @@ describe('/api/genres', () => {
 
     it('should return 400 if genre is less than 5 characters', async () => {
       try {
-        genre = '1234';
+        genre = '12345';
         await exec();
       } catch (ex) {
         expect(ex.status).toBe(400);
@@ -159,7 +159,7 @@ describe('/api/genres', () => {
     });
 
     it('should return 400 if genre is less than 5 characters', async () => {
-      newGenre = '1234';
+      newGenre = '12345';
       try {
         const res = await exec();
       } catch (ex) {

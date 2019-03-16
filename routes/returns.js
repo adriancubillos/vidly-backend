@@ -1,8 +1,6 @@
 const Joi = require('joi');
 const moment = require('moment');
-const validateObjectId = require('../middleware/validateObjectId');
 const auth = require('../middleware/auth');
-const admin = require('../middleware/admin');
 const validate = require('../middleware/validate');
 const { Rental } = require('../models/rental');
 const { Movie } = require('../models/movie');

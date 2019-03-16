@@ -54,5 +54,5 @@ function validateUpdateMovie(movie) {
 
 exports.Movie = Movie;
 exports.movieSchema = movieSchema;
-exports.validate = validateMovie;
+exports.validateMovie = validateMovie;
 exports.validateUpdate = validateUpdateMovie;

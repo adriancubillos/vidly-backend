@@ -1,7 +1,8 @@
 const auth = require('../middleware/auth');
+const validate = require('../middleware/validate');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
-const { User, validate } = require('../models/user');
+const { User, validateUser } = require('../models/user');
 const express = require('express');
 const router = express.Router();
 
@@ -10,10 +11,7 @@ router.get('/me', auth, async (req, res) => {
   res.status(200).send(user);
 });
 
-router.post('/', auth, async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
+router.post('/', [ auth, validate(validateUser) ], async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send('User already registered.');
 
@@ -23,7 +21,7 @@ router.post('/', auth, async (req, res) => {
   //   password : req.body.password
   // });
 
-  //Using lodash instead
+  //Using lodash instead useful if the object have lot of properties(20+) and we just need some of them.
   user = new User(_.pick(req.body, [ 'name', 'email', 'password' ]));
 
   //hashing the password

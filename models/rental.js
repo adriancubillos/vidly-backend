@@ -64,4 +64,4 @@ function validateRental(movie) {
 }
 
 exports.Rental = Rental;
-exports.validate = validateRental;
+exports.validateRental = validateRental;
