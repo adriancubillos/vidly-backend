@@ -4,6 +4,13 @@ const config = require('config');
 const mongoose = require('mongoose');
 
 describe('user.generateAuthToken', () => {
+  beforeEach(() => {
+    server = require('../../../index');
+  });
+  afterEach(async () => {
+    await server.close();
+  });
+
   it('should return a valid JWT', () => {
     const payload = { _id: new mongoose.Types.ObjectId().toHexString(), isAdmin: true };
     const user = new User(payload);

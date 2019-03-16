@@ -5,23 +5,32 @@ const { Genre } = require('../../models/genre');
 let server;
 
 describe('auth middleware', () => {
-  let token;
-
   beforeEach(() => {
     server = require('../../index');
   });
   afterEach(async () => {
     await Genre.remove({});
+    await server.close();
   });
 
+  let token;
+
+  //prettier-ignore
   const exec = () => {
-    return request(server).post('/api/genres').set('x-auth-token', token).send({ genre: 'genre1' });
+    return request(server)
+    .post('/api/genres')
+    .set('x-auth-token', token)
+    .send({ genre: 'genre1' });
   };
 
   beforeEach(() => {
     token = new User().generateAuthToken();
   });
 
+  afterEach(async () => {
+    await Genre.remove({});
+    await server.close();
+  });
   it('should return 401 if no token is provided', async () => {
     token = '';
     try {

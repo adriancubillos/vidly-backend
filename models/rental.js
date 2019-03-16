@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const rentalSchema = new mongoose.Schema({
-  customer    : {
+  customer     : {
     type     : new mongoose.Schema({
       name   : {
         type      : String,
@@ -20,7 +20,7 @@ const rentalSchema = new mongoose.Schema({
     }),
     required : true
   },
-  movie       : {
+  movie        : {
     type     : new mongoose.Schema({
       title           : {
         type      : String,
@@ -38,15 +38,15 @@ const rentalSchema = new mongoose.Schema({
     }),
     required : true
   },
-  dayOut      : {
+  dateOut      : {
     type     : Date,
     required : true,
     default  : Date.now
   },
-  dayReturned : {
+  dateReturned : {
     type : Date
   },
-  rentalFee   : {
+  rentalFee    : {
     type : Number,
     min  : 0
   }

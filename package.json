@@ -5,11 +5,17 @@
   "main": "index.js",
   "jest": {
     "testEnvironment": "node",
-    "collectCoverage": true,
-    "collectCoverageFrom": [ "**/*.{js,jsx}", "!**/coverage/**", "!**/adri/**", "!**/node_modules/**", "!**/vendor/**" ]
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/adri/**",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ]
   },
   "scripts": {
-    "test": "jest --watchAll --verbose --coverage"
+    "test": "jest --watchAll --verbose --runInBand"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +30,7 @@
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.5.0",
     "lodash": "^4.17.11",
+    "moment": "^2.24.0",
     "mongoose": "^5.4.17",
     "winston": "^3.2.1",
     "winston-mongodb": "^4.0.3"

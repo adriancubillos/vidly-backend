@@ -7,7 +7,7 @@ describe('auth middleware', () => {
     server = require('../../../index');
   });
   afterEach(async () => {
-    server.close();
+    await server.close();
   });
 
   it('should populate req.user with the payload of a valid JWT', () => {

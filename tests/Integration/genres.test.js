@@ -10,11 +10,16 @@ describe('/api/genres', () => {
     server = require('../../index');
   });
   afterEach(async () => {
-    server.close();
-    await Genre.remove({});
+    // await Genre.remove({});
+    await server.close();
   });
 
   describe('GET /', () => {
+    afterEach(async () => {
+      await Genre.remove({});
+      await server.close();
+    });
+
     it('should return all genres', async () => {
       await Genre.collection.insertMany([ { genre: 'genre1' }, { genre: 'genre2' } ]);
       const res = await request(server).get('/api/genres');
@@ -137,6 +142,11 @@ describe('/api/genres', () => {
       token = new User().generateAuthToken();
       id = genre._id;
       newGenre = 'updatedGenre';
+    });
+
+    afterEach(async () => {
+      await Genre.remove({});
+      await server.close();
     });
 
     it('should return 401 if client is not logged in', async () => {
