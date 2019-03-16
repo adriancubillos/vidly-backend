@@ -5,14 +5,8 @@
   "main": "index.js",
   "jest": {
     "testEnvironment": "node",
-    "collectCoverage": false,
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/coverage/**",
-      "!**/adri/**",
-      "!**/node_modules/**",
-      "!**/vendor/**"
-    ]
+    "collectCoverage": true,
+    "collectCoverageFrom": [ "**/*.{js,jsx}", "!**/coverage/**", "!**/adri/**", "!**/node_modules/**", "!**/vendor/**" ]
   },
   "scripts": {
     "test": "jest --watchAll --verbose --runInBand"

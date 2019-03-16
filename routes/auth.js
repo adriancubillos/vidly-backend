@@ -11,17 +11,16 @@ router.post('/', validate(validateAuth), async (req, res) => {
   if (!user) return res.status(400).send('Invalid email or password.');
 
   const validPassword = await bcrypt.compare(req.body.password, user.password);
-
   if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   const token = user.generateAuthToken();
-  res.send(token);
+  res.status(200).send(token);
 });
 
 function validateAuth(req) {
   const schema = {
     email    : Joi.string().min(5).max(255).email({ minDomainAtoms: 2 }).required(),
-    password : Joi.string().min(5).max(255).regex(/^[a-zA-Z0-9]{3,30}$/).required() // max differs form schema as DB will store hashed value(longer)
+    password : Joi.string().min(5).max(255).required() // max differs form schema as DB will store hashed value(longer)
   };
 
   return Joi.validate(req, schema);
