@@ -22,7 +22,7 @@ router.post('/', validate(validateUser), async (req, res) => {
   // });
 
   //Using lodash instead useful if the object have lot of properties(20+) and we just need some of them.
-  user = new User(_.pick(req.body, [ 'name', 'email', 'password' ]));
+  user = new User(_.pick(req.body, [ 'name', 'email', 'password', 'isAdmin' ]));
 
   //hashing the password
   const salt = await bcrypt.genSalt(10);
@@ -30,7 +30,7 @@ router.post('/', validate(validateUser), async (req, res) => {
   await user.save();
 
   const token = user.generateAuthToken();
-  res.header('x-auth-token', token).send(_.pick(user, [ '_id', 'name', 'email' ]));
+  res.header('x-auth-token', token).send(_.pick(user, [ '_id', 'name', 'email', 'isAdmin' ]));
 });
 
 module.exports = router;
