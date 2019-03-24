@@ -6,13 +6,21 @@
   "jest": {
     "testEnvironment": "node",
     "collectCoverage": true,
-    "collectCoverageFrom": [ "**/*.{js,jsx}", "!**/coverage/**", "!**/adri/**", "!**/node_modules/**", "!**/vendor/**" ]
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/adri/**",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ]
   },
   "scripts": {
     "test": "jest --watchAll --verbose --runInBand",
     "start": "node index.js"
   },
-  "engines": { "node": "v8.15.1" },
+  "engines": {
+    "node": "v8.15.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,6 +28,7 @@
     "bcrypt": "^3.0.4",
     "compression": "^1.7.3",
     "config": "^3.0.1",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-async-errors": "^3.1.1",
     "fawn": "^2.1.5",

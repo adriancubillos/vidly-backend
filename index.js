@@ -3,11 +3,11 @@ const express = require('express');
 const app = express();
 
 require('./startup/logging')();
+require('./startup/prod')(app);
 require('./startup/routes')(app);
 require('./startup/db')();
 require('./startup/config')();
 require('./startup/validation')(); //TODO: Why did we do this...?
-require('./startup/prod')(app);
 
 /** 
  * Open connection and port Config.
