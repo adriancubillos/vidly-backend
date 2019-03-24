@@ -37,7 +37,8 @@ function validateUser(user) {
   const schema = {
     name     : Joi.string().min(2).max(50).required(),
     email    : Joi.string().min(5).max(255).email({ minDomainAtoms: 2 }).required(),
-    password : Joi.string().min(5).max(255).regex(/^[a-zA-Z0-9]{3,30}$/).required() // max differs form schema as DB will store hashed value(longer)
+    password : Joi.string().min(5).max(255).regex(/^[a-zA-Z0-9]{3,30}$/).required(), // max differs form schema as DB will store hashed value(longer)
+    isAdmin  : Joi.boolean().required()
   };
 
   return Joi.validate(user, schema);
