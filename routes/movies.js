@@ -1,4 +1,3 @@
-const validateObjectId = require('../middleware/validateObjectId');
 const validate = require('../middleware/validate');
 const { Movie, validateMovie, validateUpdate } = require('../models/movie');
 const { Genre } = require('../models/genre');
