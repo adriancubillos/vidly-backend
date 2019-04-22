@@ -1,4 +1,5 @@
 const validateObjectId = require('../middleware/validateObjectId');
+const admin = require('../middleware/admin');
 const auth = require('../middleware/auth');
 
 const validate = require('../middleware/validate');
@@ -51,7 +52,7 @@ router.put('/:id', [ auth, validate(validateUpdate) ], async (req, res) => {
   res.send(movie);
 });
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [ validateObjectId, auth, admin ], async (req, res) => {
   let movie = await Movie.findByIdAndDelete(req.params.id);
   if (!movie)
     return res.status(404).send(`The movie with the given ID: ${req.params.id} was not found!`);
