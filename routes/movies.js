@@ -18,10 +18,10 @@ router.post('/', [ auth, validate(validateMovie) ], async (req, res) => {
     title           : req.body.title,
     genre           : {
       _id   : genreObj._id,
-      genre : genreObj.genre,
+      genre : genreObj.genre
     },
     numberInStock   : req.body.numberInStock,
-    dailyRentalRate : req.body.dailyRentalRate,
+    dailyRentalRate : req.body.dailyRentalRate
   });
 
   await movie.save();
@@ -39,7 +39,7 @@ router.put('/:id', [ auth, validate(validateUpdate) ], async (req, res) => {
     if (!genreObj) return res.status(400).send(`The genre ID: ${req.params.genreId} is not valid!`);
     updateFields.genre = {
       _id   : genreObj._id,
-      genre : genreObj.genre,
+      genre : genreObj.genre
     };
   }
 
