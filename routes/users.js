@@ -32,7 +32,7 @@ router.post('/', validate(validateUser), async (req, res) => {
   const token = user.generateAuthToken();
   res
     .header('x-auth-token', token)
-    .header('access-control-expose-headers')
+    .header('access-control-expose-headers', 'x-auth-token')
     .send(_.pick(user, [ '_id', 'name', 'email', 'isAdmin' ]));
 });
 
